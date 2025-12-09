@@ -19,8 +19,11 @@ Tahap pengolahan data dilakukan untuk mempersiapkan visualisasi yang spesifik:
 ## VISUALIZATION
 Berikut adalah instrumen visualisasi yang digunakan dalam workflow:
 * **Pie Chart:** Memvisualisasikan proporsi perbandingan jumlah antara universitas swasta (*Private*) dan negeri (*Public*).
+  ![Proporsi Universitas Negeri vs Swasta](pie_chart_public_vs_private.png)
 * **Scatter Plot:** Memetakan hubungan korelasi antara variabel `out-of-state tuition` (X) dengan `Graduation rate` (Y), dengan pembedaan warna berdasarkan kategori universitas.
+  ![Hubungan Biaya Kuliah dan Tingkat Kelulusan](scatter_plot_tuition_vs_graduation.png)
 * **Bar Chart:** Menampilkan peringkat 10 negara bagian (*State*) dengan rata-rata biaya hidup (*living cost*) termurah.
+  ![10 Negara Bagian dengan Biaya Hidup Terendah](bar_chart_top10_cheapest_states.png)
 
 ## INSIGHT
 Berdasarkan visualisasi yang dihasilkan, ditemukan beberapa wawasan kunci:
