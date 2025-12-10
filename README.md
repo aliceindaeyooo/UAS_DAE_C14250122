@@ -11,7 +11,7 @@ Tahap ini berfokus pada pembersihan dan penyesuaian tipe data agar siap diolah:
 
 ## PROCESSING
 Tahap pengolahan data dilakukan untuk mempersiapkan visualisasi yang spesifik:
-1.  **Feature Engineering (Biaya Hidup):** Menggunakan node *Math Formula* untuk menjumlahkan kolom `room` dan `board` guna mendapatkan variabel baru yaitu "Total Living Cost".
+1.  **Feature Engineering (Biaya Hidup):** Menggunakan node *Math Formula* untuk menjumlahkan kolom `room` (harga sewa kamar) dan `board` (harga makanan) guna mendapatkan variabel baru yaitu "Total Living Cost".
 2.  **Color Management:** Menggunakan node *Color Manager* untuk menetapkan skema warna yang konsisten (Biru untuk Public, Hijau untuk Private) guna memudahkan identifikasi pada Scatter Plot.
 3.  **Aggregation (Untuk Bar Chart):** Menggunakan node *GroupBy* untuk mengelompokkan data berdasarkan `State` dan menghitung rata-rata (*mean*) dari "Total Living Cost".
 4.  **Sorting & Filtering:** Menggunakan node *Sorter* (Ascending) pada hasil agregasi biaya hidup, kemudian menggunakan node *Row Filter* untuk hanya mengambil 10 negara bagian dengan rata-rata biaya hidup terendah.
@@ -23,7 +23,7 @@ Berikut adalah instrumen visualisasi yang digunakan dalam workflow:
   **Insight:** Berdasarkan Pie Chart, populasi universitas di Amerika Serikat didominasi oleh universitas swasta (*private*) dibandingkan universitas negeri (*public*). Hal ini menunjukkan banyaknya opsi institusi pendidikan mandiri yang tersedia di pasar pendidikan AS.
    
 2. **Scatter Plot:** Memetakan hubungan korelasi antara variabel `out-of-state tuition` (X) dengan `Graduation rate` (Y), dengan pembedaan warna berdasarkan kategori universitas.
-  ![Hubungan Biaya Kuliah dan Tingkat Kelulusan](visualization/scatter_plot_tuition_vs_graduation.png)
+  ![Hubungan Biaya Kuliah dan Tingkat Kelulusan](visualization/scatter_plot.png)
   **Insight:** Analisis Scatter Plot menunjukkan adanya **korelasi positif** antara biaya kuliah dan tingkat kelulusan.
 * **Institusi Swasta (Hijau):** Mendominasi area biaya tinggi (di atas $15,000) namun juga menguasai tingkat kelulusan tertinggi (di atas 80-90%). Ini menunjukkan bahwa biaya premium sering kali berbanding lurus dengan dukungan akademik yang lebih baik.
 * **Institusi Negeri (Biru):** Terkonsentrasi di sisi kiri grafik (biaya lebih rendah, mayoritas di bawah $15,000) dengan tingkat kelulusan moderat (30-70%). Terdapat batas atas (*ceiling effect*) di mana jarang sekali universitas negeri yang memiliki biaya sangat tinggi.
