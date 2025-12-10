@@ -24,6 +24,8 @@ Berikut adalah instrumen visualisasi yang digunakan dalam workflow:
   ![Hubungan Biaya Kuliah dan Tingkat Kelulusan](scatter_plot_tuition_vs_graduation.png)
 * **Bar Chart:** Menampilkan peringkat 10 negara bagian (*State*) dengan rata-rata biaya hidup (*living cost*) termurah.
   ![10 Negara Bagian dengan Biaya Hidup Terendah](bar_chart_top10_cheapest_states.png)
+* **Box Plot (Baru):** Membandingkan distribusi tingkat penerimaan (*Acceptance Rate*) antara kategori Public dan Private untuk melihat sebaran selektivitas dan mendeteksi adanya outliers.
+  ![10 Negara Bagian dengan Biaya Hidup Terendah]()
 
 ## INSIGHT
 Berdasarkan visualisasi yang dihasilkan, ditemukan beberapa wawasan kunci:
