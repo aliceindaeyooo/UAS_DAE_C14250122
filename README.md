@@ -13,16 +13,17 @@ Tahap ini berfokus pada pembersihan dan penyesuaian tipe data agar siap diolah:
     ![Proporsi Universitas Negeri vs Swasta](visualization/rule_engine.png)
 
 ## PROCESSING
-Tahap pengolahan data dilakukan untuk mempersiapkan visualisasi yang spesifik:
-1.  **Feature Engineering:** Menggunakan node *Math Formula* untuk menjumlahkan kolom `room` (harga sewa kamar), `board` (harga makanan) dan `add. fees` (biaya tambahan) untuk menambah kolom baru yaitu `Living_Cost`. Living Cost dihitung dengan menggunakan rumus berikut: `$room$+$board$+$add. fees$`
-    ![Feature Engineering](visualization/living_cost.png)
-Selain itu node *Math Formula* juga digunakan untuk menghitung rata-rata dari kolom `in-state tuition` dan `out-of-state tuition` untuk menambah kolom baru yaitu `Average_Tuition`. Average Tuition dihitung dengan menggunakan rumus berikut: `($in-state tuition$ + $out-of-state tuition$) / 2`
+Tahap pengolahan data (data processing) ini dilakukan secara sistematis untuk mentransformasi data mentah menjadi format yang siap untuk divisualisasikan, dengan rincian langkah sebagai berikut:
+*  **Feature Engineering:** Pada tahap ini, dilakukan manipulasi matematis menggunakan node Math Formula untuk menciptakan variabel baru yang lebih informatif bagi analisis:
+    1.  **Pembuatan Kolom `Living_Cost`:** Variabel ini dibuat untuk merepresentasikan estimasi total biaya hidup non-akademik mahasiswa. Nilainya diperoleh dengan menjumlahkan komponen biaya tempat tinggal (*room*), biaya makan (*board*), dan biaya tambahan lain-lain (*add. fees*) menggunakan rumus: `$room$ + $board$ + $add. fees$`.
+        ![Living_Cost](visualization/living_cost.png)
+   2.   **Pembuatan Kolom `Average_Tuition`:** Variabel ini bertujuan untuk mendapatkan nilai tengah biaya kuliah. Dihitung dengan mengambil rata-rata antara biaya kuliah warga lokal (*in-state*) dan pendatang (*out-of-state*) menggunakan rumus: `($in-state tuition$ + $out-of-state tuition$) / 2`.
     ![Feature_Engineering](visualization/average_tuition.png)
-2.  **Color Management:** Menggunakan node *Color Manager* untuk menetapkan skema warna yang konsisten (Biru untuk Public, Hijau untuk Private) untuk memudahkan identifikasi pada Scatter Plot.
+*  **Color Management:** Langkah ini berfokus pada estetika dan keterbacaan visualisasi. Menggunakan node Color Manager, data diklasifikasikan berdasarkan jenis universitasnya. Skema warna ditetapkan secara spesifik—Biru untuk Universitas Negeri (Public) dan Hijau untuk Universitas Swasta (Private). Pemberian warna ini krusial agar pada saat ditampilkan dalam Scatter Plot, pola sebaran antara kedua jenis institusi tersebut dapat dibedakan dengan mudah dan cepat.
     ![Color Manager](visualization/color_manager.png)
-3.  **Aggregation (Untuk Bar Chart):** Menggunakan node *GroupBy* untuk mengelompokkan data berdasarkan `State` dan menghitung rata-rata (*mean*) dari "Total Living Cost".
-    ![Aggregation](groupby_state.png)
-4.  **Sorting & Filtering:** Menggunakan node *Sorter* (Ascending) pada hasil agregasi biaya hidup, kemudian menggunakan node *Row Filter* untuk hanya mengambil 10 negara bagian dengan rata-rata biaya hidup terendah.
+*  **Aggregation (Untuk Bar Chart):** Proses ini mengubah level analisis dari "per Universitas" menjadi "per Wilayah". Menggunakan node GroupBy, data dikelompokkan berdasarkan kolom `State` (Negara Bagian). Selanjutnya, dilakukan operasi statistik untuk menghitung nilai rata-rata (mean) dari kolom `Living_Cost` yang telah dibuat sebelumnya. Hasilnya adalah satu baris data untuk setiap negara bagian yang memuat rata-rata biaya hidup di wilayah tersebut.
+    ![Aggregation](visualization/groupby_state.png)
+*  **Sorting & Filtering:** Ini adalah langkah final untuk menyaring informasi utama (Top Insights). Pertama, node Sorter digunakan untuk mengurutkan data hasil agregasi biaya hidup dari yang terkecil ke terbesar (Ascending). Setelah data terurut, node Row Filter diaplikasikan untuk memotong data dan hanya mengambil 10 baris teratas. Langkah ini memastikan bahwa visualisasi akhir hanya akan menampilkan 10 negara bagian dengan rata-rata biaya hidup terendah (termurah).
     ![Sorting and Filtering](visualization/sort_living_cost.png)
 
 ## VISUALISASI DAN INSIGHT
