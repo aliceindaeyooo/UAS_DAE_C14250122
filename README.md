@@ -6,15 +6,24 @@ Menggunakan data `universities.csv`, laporan ini bertujuan untuk menganalisis la
 ## PREPARATION
 Tahap ini berfokus pada pembersihan dan penyesuaian tipe data agar siap diolah:
 1.  **Handling Missing Data:** Mengisi nilai yang hilang (*missing values*) pada kolom bertipe integer dan float menggunakan nilai median untuk menjaga distribusi data.
+    ![Missing Value Handling](visualization/missing_value.png)
 2.  **Column Renaming:** Mengubah nama kolom `Public (1)/ Private (2)` menjadi `Category` agar lebih mudah dibaca.
-3.  **Data Type Conversion:** Menggunakan node *Number to String* untuk mengubah nilai indeks `1` menjadi "Public" dan `2` menjadi "Private", sehingga dapat dikategorikan dalam visualisasi.
+    ![Column Renaming](visualization/rename_column.png)
+3.  **Data Type Conversion:** Menggunakan node *Rule Engine* untuk mengubah nilai indeks `1` menjadi "Public" dan `2` menjadi "Private", sehingga dapat dikategorikan dalam visualisasi.
+    ![Proporsi Universitas Negeri vs Swasta](visualization/rule_engine.png)
 
 ## PROCESSING
 Tahap pengolahan data dilakukan untuk mempersiapkan visualisasi yang spesifik:
-1.  **Feature Engineering (Biaya Hidup):** Menggunakan node *Math Formula* untuk menjumlahkan kolom `room` (harga sewa kamar) dan `board` (harga makanan) guna mendapatkan variabel baru yaitu "Total Living Cost".
-2.  **Color Management:** Menggunakan node *Color Manager* untuk menetapkan skema warna yang konsisten (Biru untuk Public, Hijau untuk Private) guna memudahkan identifikasi pada Scatter Plot.
+1.  **Feature Engineering:** Menggunakan node *Math Formula* untuk menjumlahkan kolom `room` (harga sewa kamar), `board` (harga makanan) dan `add. fees` (biaya tambahan) untuk menambah kolom baru yaitu `Living_Cost`. Living Cost dihitung dengan menggunakan rumus berikut: `$room$+$board$+$add. fees$`
+    ![Feature Engineering](visualization/living_cost.png)
+Selain itu node *Math Formula* juga digunakan untuk menghitung rata-rata dari kolom `in-state tuition` dan `out-of-state tuition` untuk menambah kolom baru yaitu `Average_Tuition`. Average Tuition dihitung dengan menggunakan rumus berikut: `($in-state tuition$ + $out-of-state tuition$) / 2`
+    ![Feature_Engineering](visualization/average_tuition.png)
+2.  **Color Management:** Menggunakan node *Color Manager* untuk menetapkan skema warna yang konsisten (Biru untuk Public, Hijau untuk Private) untuk memudahkan identifikasi pada Scatter Plot.
+    ![Color Manager](visualization/color_manager.png)
 3.  **Aggregation (Untuk Bar Chart):** Menggunakan node *GroupBy* untuk mengelompokkan data berdasarkan `State` dan menghitung rata-rata (*mean*) dari "Total Living Cost".
+    ![Aggregation](groupby_state.png)
 4.  **Sorting & Filtering:** Menggunakan node *Sorter* (Ascending) pada hasil agregasi biaya hidup, kemudian menggunakan node *Row Filter* untuk hanya mengambil 10 negara bagian dengan rata-rata biaya hidup terendah.
+    ![Sorting and Filtering](visualization/sort_living_cost.png)
 
 ## VISUALISASI DAN INSIGHT
 Berikut adalah instrumen visualisasi yang digunakan dalam workflow:
